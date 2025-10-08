@@ -1,0 +1,4 @@
+make clean && make CFLAGS="-O0"
+make clean && make CFLAGS="-O2 -fno-tree-vectorize"
+make clean && make CFLAGS="-O3"
+make clean && make CFLAGS="-Ofast-vec"
