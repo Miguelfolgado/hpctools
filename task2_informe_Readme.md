@@ -74,6 +74,3 @@ Comparando los informes de vectorización entre GCC 8.4.1, 10.1.0 y 11.4.0, se o
 En GCC 8.4.1, la mayoría de bucles fallan por “bad loop form” y “not enough data-refs”, mientras que a partir de GCC 10 la herramienta logra vectorizar correctamente los bucles internos más simples. No obstante, tampoco se ve un gran impacto en el tiempo de ejecución.
 
 La versión 11.4.0 y 10.0.1 generan informes más limpios y una vectorización más estable, aunque el conjunto de bucles vectorizados es esencialmente el mismo. La ligera mejora de rendimiento observada probablemente entre ambas versiones no parece deberse en si a la optimización, quiza tiene que ver con con un manejo mas eficiente de la memoria y el scheduling.
-
-
-
