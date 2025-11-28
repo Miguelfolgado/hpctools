@@ -11,7 +11,7 @@ Se ha evaluado el rendimiento de la implementación propia de `dgesv()` desarrol
 | icc 2021.3.0  | intel/2021.3.0 |
 | icx 2024.2.1  | intel/2024.2.1 | 
 
-Las pruebas se realizaron sobre matrices cuadradas de tamaño 1024², 2048² y 4096², ejecutando el binario 5 veces y tomando la mediana del tiempo medido dentro del main (en milisegundos). Para realizar esto de manera automatica se ha escrito un pequeño script denominado benchmark_dgesv.sh
+Las pruebas se realizaron sobre matrices cuadradas de tamaño 1024x1024, 2048x2048 y 4096x4096, ejecutando el binario 5 veces y tomando la mediana del tiempo medido dentro del main (en milisegundos). Para realizar esto de manera automatica se ha escrito un pequeño script denominado benchmark_dgesv.sh
 
 
 
@@ -22,12 +22,18 @@ Viene en el modulo cesga/system. Este no tiene disponible el modulo openblas. Po
 ## icc 2021.3.0
 
 Modulos que se han utilizado para este caso:
+module load cesga/2020
+module load intel/2021.3.0
+module load imkl
 
-| Matrix size | O2     | O3     | fast   | ref    |
-| ----------- | ------ | ------ | ------ | ------ |
-| 1024×1024   | xxx ms | xxx ms | xxx ms | xxx ms |
-| 2048×2048   | xxx ms | xxx ms | xxx ms | xxx ms |
-| 4096×4096   | xxx    | xxx ms | xxx ms | xxx ms | 
+La libreria utilizada para la funcion de referencia es:
+include <mkl_lapacke.h>
+
+| Matrix size | O2       | O3       | fast     | ref      |
+| ----------- | -------- | -------- | -------- | -------- |
+| 1024×1024   | 778 ms   | 781 ms   | 596 ms   | 38 ms    |
+| 2048×2048   | 11641 ms | 11711 ms | 9054 ms  | 276 ms   |
+| 4096×4096   | 97436 ms | 97763 ms | 80283 ms | 1583  ms |
 
 ---
 
@@ -60,7 +66,6 @@ Para el estudio con VTune se ha empleado la ejecución del algoritmo sobre siste
 
 | Métrica                          | ICC -O2   | ICC -O3   | ICC -fast  | MKL dgesv   |
 | -------------------------------- | --------- | --------- | ---------- | ----------- |
-| **Tiempo (aprox)**               | ~14.8 s   | ~12.0 s   | ~10.2 s    | 0.33–0.43 s |
 | **IPC**                          | 1.405     | 1.515     | 0.557      | 1.949       |
 | **DP GFLOPS**                    | 2.632     | 2.847     | 3.354      | 53.405      |
 | **Frecuencia media CPU**         | 2.8 GHz   | 2.8 GHz   | 2.795 GHz  | 2.744 GHz   |
