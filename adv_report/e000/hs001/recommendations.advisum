@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- <!DOCTYPE IntelParallelAdvisorSummaryCollection SYSTEM  "IntelParallelAdvisorSummaryCollection.dtd"> -->
+
+<IntelParallelAdvisorSummary version="" 
+                             kind="DATAKIND_SURVEY_EX" >
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv.c"
+           line_no="53"
+           routine="my_dgesv"
+           is_vectorized="1"
+           self_time="6.197976E-01"
+           total_time="0.000000E+00"
+           trip_counts=""
+           func_instance="33"
+           priority="0">
+           <recommendation id="rec_fma_enforce_vec_c" title="Force vectorization if possible" confidence="1" gain="-1"/>
+  </hotspot>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv.c"
+           line_no="53"
+           routine="my_dgesv"
+           is_vectorized="1"
+           self_time="6.197976E-01"
+           total_time="0.000000E+00"
+           trip_counts=""
+           func_instance="33"
+           priority="0">
+           <recommendation id="rec_peel_remainder_disable_dynamic_align_c" title="Disable dynamic alignment" confidence="1" gain="-1"/>
+  </hotspot>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/main.c"
+           line_no="19"
+           routine="generate_matrix"
+           is_vectorized="0"
+           self_time="1.009541E-02"
+           total_time="0.000000E+00"
+           trip_counts=""
+           func_instance="4"
+           priority="0">
+           <recommendation id="rec_fma_target_avx2_isa_c" title="Target the AVX2 ISA" confidence="1" gain="-1"/>
+  </hotspot>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/main.c"
+           line_no="19"
+           routine="generate_matrix"
+           is_vectorized="0"
+           self_time="1.009541E-02"
+           total_time="0.000000E+00"
+           trip_counts=""
+           func_instance="4"
+           priority="0">
+           <recommendation id="rec_type_conversions_smallest_c" title="Use the smallest data type" confidence="1" gain="-1"/>
+  </hotspot>
+</IntelParallelAdvisorSummary >

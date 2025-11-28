@@ -1,0 +1,7 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.3.0 Build 20210609_000000
+
+Compiler options: -Xlinker -rpath=/opt/cesga/2020/software/Core/intel/2021.3.0/compiler/2021.3.0/linux/compiler/lib/intel64 -fast -g -qopt-report=5 -qopt-report-phase=vec -c -o timer.o

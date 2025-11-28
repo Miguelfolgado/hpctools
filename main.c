@@ -1,6 +1,6 @@
 //#include <lapacke.h>
-#include <openblas/lapacke.h>
-//#include <mkl_lapacke.h>
+//#include <openblas/lapacke.h>
+#include <mkl_lapacke.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
   //
   int n = size, nrhs = size, lda = size, ldb = size, info;
   int *ipiv = (int *) malloc(sizeof(int) * size);
+
 
   timeinfo start, now;
   timestamp(&start);

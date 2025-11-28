@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- <!DOCTYPE IntelParallelAdvisorSummaryCollection SYSTEM  "IntelParallelAdvisorSummaryCollection.dtd"> -->
+
+<IntelParallelAdvisorSummary version="" 
+                             kind="DATAKIND_SURVEY_EX" >
+  <hotspot filename=""
+           line_no="4294967295"
+           routine="__libc_start_main"
+           is_vectorized="0"
+           self_time="0.000000E+00"
+           total_time="6.400000E-01"
+           trip_counts=""
+           func_instance="1"
+           priority="0"/>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv.c"
+           line_no="53"
+           routine="my_dgesv"
+           is_vectorized="1"
+           self_time="6.197976E-01"
+           total_time="6.197976E-01"
+           trip_counts="63; 3; 2; 2"
+           func_instance="33"
+           confidence="1"
+           efficiency="8.438156E+01"
+           referenceEfficiency="2.500000E+01"
+           priority="0"/>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv.c"
+           line_no="47"
+           routine="main"
+           is_vectorized="0"
+           self_time="0.000000E+00"
+           total_time="6.197976E-01"
+           trip_counts="1024"
+           func_instance="11"
+           priority="0"/>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/main.c"
+           line_no="94"
+           routine="main"
+           is_vectorized="0"
+           self_time="0.000000E+00"
+           total_time="6.197976E-01"
+           trip_counts="1024"
+           func_instance="12"
+           priority="0"/>
+  <hotspot filename="/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/main.c"
+           line_no="19"
+           routine="generate_matrix"
+           is_vectorized="0"
+           self_time="1.009541E-02"
+           total_time="1.009541E-02"
+           trip_counts="1048576"
+           func_instance="4"
+           priority="0"/>
+</IntelParallelAdvisorSummary >

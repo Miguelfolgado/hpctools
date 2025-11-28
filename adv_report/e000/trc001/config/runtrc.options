@@ -1,0 +1,15 @@
+-r
+/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/adv_report/e000/trc001
+-quiet
+-cs-file
+/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/adv_report/e000/callstacks.def
+--cs-mode=no-count-loops,no-count-flops,stl-profiling,stack-stitching
+--target-loops=n
+--count-flops
+--benchmarks=dram,mcdram,cpu_cache,flop_peak,int
+--jit-profiling
+--gpu-carm
+--target-gpu=none
+--
+./dgesv
+1024

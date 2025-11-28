@@ -1,3 +1,20 @@
 module load cesga/system ----> Este para gcc 8.4.1 (No lleva openblas, version alternativa del codigo)
 module load cesga/2020 ----> Este para gcc 10.1.0
 module load cesga/2025 ----> Este para gcc 11.4.0
+
+
+Entornos utilizados task 3:
+
+Para icx:
+module load cesga/2025
+module load intel/2024.2.1
+module load imkl
+
+Para icc:
+module load cesga/2020
+module load intel/2021.3.0
+module load imkl
+
+module load advisor
+module load valgrind
+module load vtune

@@ -45,7 +45,7 @@ int my_dgesv(int n, int nrhs, double *a, double *b) {
 	
         // Eliminamos la columna k en todas las filas
         for (int i = 0; i < n; i++)
-	    {
+	{
             if (i == k) continue;
             double factor = a[i*n + k];
             if (factor != 0.0)

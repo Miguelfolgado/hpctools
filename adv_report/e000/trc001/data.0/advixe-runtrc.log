@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<log version="1.0" tool="runtool">
+
+<msg id="1" tool="runtool">
+  <type>log-start</type>
+  <arg>2025/11/28 19:45:28</arg>
+</msg>
+<msg id="2" tool="runtool">
+  <type>bandwidth-measurement-starts</type>
+</msg>
+<msg id="3" tool="runtool">
+  <type>bandwidth-measurement-done</type>
+</msg>
+<msg id="4" tool="runtool">
+  <type>collector-starts</type>
+</msg>
+<msg id="5" tool="runtool">
+  <type>marker-file</type>
+  <arg>/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/adv_report/e000/trc001/trc001.advixe</arg>
+</msg>
+<msg id="6" tool="trc">
+  <type>PROCESS_START</type>
+  <arg>/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv</arg>
+  <arg>1502578</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="7" tool="trc">
+  <type>PROCESS_ANALYSIS_MODE</type>
+  <arg>full</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="8" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv</arg>
+  <arg>0x400000</arg>
+  <arg>0x40d47f</arg>
+  <arg>yes</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="9" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/ld-linux-x86-64.so.2</arg>
+  <arg>0x1477a1c6d000</arg>
+  <arg>0x1477a1c98137</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="10" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>[vdso]</arg>
+  <arg>0x7fff225f1000</arg>
+  <arg>0x7fff225f1f5c</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="11" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib64/libopenblas.so.0</arg>
+  <arg>0x14778aec8000</arg>
+  <arg>0x14778bc173cf</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="12" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libm.so.6</arg>
+  <arg>0x14778ad56000</arg>
+  <arg>0x14778ae9710f</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="13" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/opt/cesga/2020/software/Core/advisor/2021.4.0/advisor/2021.4.0/lib64/libgcc_s.so.1</arg>
+  <arg>0x14778ad2e000</arg>
+  <arg>0x14778ad48447</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="14" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libc.so.6</arg>
+  <arg>0x14778ab62000</arg>
+  <arg>0x14778ad1e5cf</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="15" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libdl.so.2</arg>
+  <arg>0x14778ad50000</arg>
+  <arg>0x14778ad5510f</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="16" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libpthread.so.0</arg>
+  <arg>0x14778ab41000</arg>
+  <arg>0x14778ab6146f</arg>
+  <arg>yes</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="17" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/libgfortran.so.5</arg>
+  <arg>0x14778a886000</arg>
+  <arg>0x14778ab407ff</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="18" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/libgomp.so.1</arg>
+  <arg>0x14778a841000</arg>
+  <arg>0x14778a88394f</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="19" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/libquadmath.so.0</arg>
+  <arg>0x14778a7c6000</arg>
+  <arg>0x14778a80f2bf</arg>
+  <arg>no</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:29 2025</timestamp>
+</msg>
+<msg id="20" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="21" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/ld-linux-x86-64.so.2</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="22" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>[vdso]</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="23" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib64/libopenblas.so.0</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="24" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libm.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="25" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/opt/cesga/2020/software/Core/advisor/2021.4.0/advisor/2021.4.0/lib64/libgcc_s.so.1</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="26" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libc.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="27" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libdl.so.2</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="28" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/lib64/libpthread.so.0</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="29" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/libgfortran.so.5</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="30" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/libgomp.so.1</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="31" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/mnt/netapp1/Optcesga_FT2_RHEL7/2020/gentoo/22072020/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/libquadmath.so.0</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="32" tool="trc">
+  <type>PROCESS_FINISH</type>
+  <arg>/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/dgesv</arg>
+  <arg>1502578</arg>
+  <arg>0x0</arg>
+  <severity>INFO</severity>
+  <timestamp>Fri Nov 28 19:45:30 2025</timestamp>
+</msg>
+<msg id="33" tool="runtool">
+  <type>app-exit-code</type>
+  <arg>0</arg>
+</msg>
+<msg id="34" tool="runtool">
+  <type>marker-file</type>
+  <arg>/mnt/netapp2/Home_FT2/home/ulc/cursos/curso394/HPCTools_trabajo/compilers_y_profiling/hpctools/adv_report/e000/trc001/trc001.advixe</arg>
+</msg>
+<msg id="35" tool="runtool">
+  <type>collector-done</type>
+</msg>
+<msg id="36" tool="runtool">
+  <type>log-end</type>
+  <arg>2025/11/28 19:45:33</arg>
+</msg>
+
+</log>
+
