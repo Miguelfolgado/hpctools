@@ -4,30 +4,29 @@
 
 ## 1. Metodología y caracteristicas de los entornos 
 
-Se ha evaluado el rendimiento de la implementación propia de `dgesv()` desarrollada en la Task 1 utilizando tres versiones del compilador ICC e ICX disponibles en el entorno CESGA:
+Se ha evaluado el rendimiento de la implementación propia de `dgesv()` desarrollada en la Task 1 utilizando ICC 2021 e ICX 2024. estas versiones están disponibles en FT3:
 
 | version Intel | modulo         |
 | ------------- | -------------- |
 | icc 2021.3.0  | intel/2021.3.0 |
 | icx 2024.2.1  | intel/2024.2.1 | 
 
-Las pruebas se realizaron sobre matrices cuadradas de tamaño 1024x1024, 2048x2048 y 4096x4096, ejecutando el binario 5 veces y tomando la mediana del tiempo medido dentro del main (en milisegundos). Para realizar esto de manera automatica se ha escrito un pequeño script denominado benchmark_dgesv.sh
+Las pruebas se realizaron sobre matrices cuadradas de tamaño 1024x1024, 2048x2048 y 4096x4096, ejecutando el binario 5 veces y tomando la mediana del tiempo medido dentro del main (en milisegundos).
 
 
 
 ## 2. Resultados
 
-Viene en el modulo cesga/system. Este no tiene disponible el modulo openblas. Por ello no escribo el tiempo de referencia.
-
 ## icc 2021.3.0
 
 Modulos que se han utilizado para este caso:
-module load cesga/2020
-module load intel/2021.3.0
-module load imkl
+
+* module load cesga/2020
+* module load intel/2021.3.0
+* module load imkl
 
 La libreria utilizada para la funcion de referencia es:
-include <mkl_lapacke.h>
+* include <mkl_lapacke.h>
 
 | Matrix size | O2       | O3       | fast     | ref      |
 | ----------- | -------- | -------- | -------- | -------- |
@@ -40,23 +39,23 @@ include <mkl_lapacke.h>
 ## icx 2024.2.1
 
 Modulos que se han utilizado para este caso:
-module load cesga/2025
-module load intel/2024.2.1
-module load imkl
+* module load cesga/2025
+* module load intel/2024.2.1
+* module load imkl
 
 La libreria utilizada para la funcion de referencia es:
-include <mkl_lapacke.h>
+* include <mkl_lapacke.h>
 
 
 | Matrix size | O2        | O3        | Ofast     | Ofast+ipo | ref     |
 | ----------- | --------- | --------- | --------- | --------- | ------- |
-| 1024×1024   | 1023 ms   | 1041 ms   | 1041 ms   | 1042 ms   | 68 ms   |
-| 2048×2048   | 14029 ms  | 14154 ms  | 14136 ms  | 14324 ms  | 440 ms  |
-| 4096×4096   | 118573 ms | 118451 ms | 119013 ms | 120023 ms | 3002 ms |
+| 1024×1024   | 1023 ms   | 1041 ms   | 1041 ms   | 1042 ms   | 43 ms   |
+| 2048×2048   | 14029 ms  | 14154 ms  | 14136 ms  | 14324 ms  | 273 ms  |
+| 4096×4096   | 118573 ms | 118451 ms | 119013 ms | 120023 ms | 1413 ms |
 
 ---
 
-Para N=4096, la solución obtenida mediante Gauss–Jordan deja de coincidir con LAPACK debido a la inestabilidad numérica del método. Gauss–Jordan requiere normalizar completamente cada fila y realizar eliminación en ambas direcciones, lo que aumenta la acumulación de errores de redondeo. LAPACK emplea LU con pivotado parcial, que es más eficiente y más estable. Tras revisar la implementación, no he encontrado errores lógicos, por lo que atribuyo la discrepancia al método utilizado y no al código.
+Para N=4096, la solución obtenida mediante Gauss–Jordan deja de coincidir con LAPACK debido a la inestabilidad numérica del método. Gauss–Jordan requiere normalizar completamente cada fila y realizar eliminación en ambas direcciones, lo que aumenta la acumulación de errores de redondeo. La implementación utilizada por LAPACK no utiliza Gauss–Jordan. Esto la hace más eficiente y estable. Tras revisar la implementación, no he encontrado errores lógicos, por lo que atribuyo la discrepancia al método utilizado y no al código.
 
 
 
@@ -88,7 +87,7 @@ Para el estudio con VTune se ha empleado la ejecución del algoritmo sobre siste
 | **FP arith / mem read ratio**    | 0.989     | 0.990     | 0.975      | 1.706       |
 | **FP arith / mem write ratio**   | 1.979     | 1.980     | 1.949      | 21.345      |
 
-Se ha realizado un analisis comparativo entre las diferentes opciones de optimización del compilador ICC usando VTune. El algoritmo en cuestión es el desarrollado en la tarea 1: Implementación de Gauss-Jordan para sistemas lineales. La última columna corresponde al analisis del resultado utilizando la función optimizada dgesv incluida en Intel MKL. Los resultados muestran diferencias significativas en tiempo de ejecución, eficiencia del hardware y uso de memoria, lo cual permite identificar los cuellos de botella fundamentales del algoritmo y del código desarrollado.
+Se ha realizado un analisis comparativo entre las diferentes opciones de optimización del compilador ICC usando VTune. Los resultados muestran diferencias significativas en tiempo de ejecución, eficiencia del hardware y uso de memoria, lo cual permite identificar los cuellos de botella fundamentales del algoritmo y del código desarrollado.
 
 ## Rendimiento general
 
@@ -98,7 +97,7 @@ La causa principal no es el compilador, sino la naturaleza del algoritmo impleme
 
 ## Eficiencia del pipeline (Retiring, IPC)
 
-El IPC de las versiones ICC se sitúa entre 0.55 y 1.5, muy por debajo del potencial del procesador (2.0–3.0 en código bien vectorizado).
+El IPC con las tres configuraciones diferents de ICC para el algoritmo desarrollado se sitúa entre 0.55 y 1.5, muy por debajo del potencial del procesador (2.0–3.0 en código bien vectorizado).
 Además, el Retiring solo alcanza entre 13% y 28%, lo que indica que la mayoría de ciclos de CPU no llegan a ejecutar operaciones útiles.
 
 En cambio, MKL alcanza un IPC de 1.95 y un Retiring del 46% Esto refleja que su código aprovecha mucho mejor las unidades de ejecución, con mayor paralelismo interno, menos dependencias y un flujo de instrucciones más eficiente.
@@ -107,7 +106,7 @@ En cambio, MKL alcanza un IPC de 1.95 y un Retiring del 46% Esto refleja que su 
 
 El análisis con VTune muestra que la implementación propia presenta un comportamiento fuertemente limitado por la memoria. Los valores de Back-End Bound entre el 70 % y el 84 %, junto con un Memory Bound del 42 % al 60 %, indican que la mayor parte del tiempo de ejecución se pierde esperando accesos a datos. Este patrón está asociado a un recorrido desfavorable de memoria —operaciones fila-fila sin blocking— que provoca numerosos ciclos del tipo carga, operación, store sin reutilización efectiva en caché. Como consecuencia, el algoritmo ejerce una gran presión tanto sobre la jerarquía de caché como sobre la DRAM, especialmente visible en la versión compilada con -fast, donde el DRAM Bound llega al 45 %.
 
-En contraste, la rutina dgesv de MKL muestra un perfil mucho más equilibrado. Su Back-End Bound se reduce en torno al 50 % y el Memory Bound cae a aproximadamente un 20 %, con un acceso a DRAM claramente menor (∼12 %). Esto refleja una utilización mucho más eficiente de la jerarquía de memoria, la reordenación de bucles para mejorar la localidad, el uso explícito de prefetching y la explotación intensiva de las cachés L2/L3. En conjunto, estas optimizaciones reducen de forma drástica el coste de los accesos a memoria y explican la diferencia de rendimiento respecto a la implementación manual.
+En contraste, la rutina dgesv de MKL muestra un perfil mucho más equilibrado. Su Back-End Bound se reduce en torno al 50 % y el Memory Bound cae a aproximadamente un 20 %, con un acceso a DRAM claramente menor (∼12 %). Esto refleja una utilización mucho más eficiente de la jerarquía de memoria, la reordenación de bucles para mejorar la localidad y la explotación intensiva de las cachés L2/L3. En conjunto, estas optimizaciones reducen de forma drástica el coste de los accesos a memoria y explican la diferencia de rendimiento respecto a la implementación manual.
 
 
 ## Vectorización
@@ -140,7 +139,7 @@ Para complementar el análisis dinámico realizado con VTune, se ha ejecutado el
 
 ## Estructura general de los accesos a memoria
 
-Los resultados muestran que las tres variantes de ICC (O2, O3 y fast) presentan cifras prácticamente idénticas en términos de instrucciones ejecutadas e intensidad de accesos a memoria.
+Los resultados muestran que las tres compilaciones de ICC del algoritmo desarrollado (O2, O3 y fast) presentan cifras prácticamente idénticas en términos de instrucciones ejecutadas e intensidad de accesos a memoria.
 Esto indica que, pese a las optimizaciones del compilador, la estructura algorítmica impone un patrón de acceso muy rígido.
 
 Las versiones compiladas con ICC realizan aproximadamente:
@@ -157,24 +156,24 @@ Estas magnitudes son extraordinariamente elevadas para un sistema de 1024×1024,
 
 * falta de blocking
 
-*  reutilización mínima de datos en caché
+* reutilización mínima de datos en caché
 
 * dependencia directa entre filas y columnas que obliga a recargar elementos repetidas veces
 
 El compilador puede alterar la granularidad o el orden de algunas instrucciones, pero no puede transformar el kernel en un algoritmo de tipo BLAS-3, por lo que el coste final es prácticamente idéntico entre -O2, -O3 y -fast.
 
-Este comportamiento coincide con los resultados obtenidos en VTune: las versiones ICC están fuertemente limitadas por memoria (Memory Bound entre 42 % y 60 %), con un Back-End Bound muy elevado y bajo Retiring, lo que indica que la CPU pasa la mayor parte del tiempo esperando cargas desde memoria.
+Este comportamiento coincide con los resultados obtenidos en VTune: las compilaciones del algoritmo desarrollado están fuertemente limitadas por memoria (Memory Bound entre 42 % y 60 %), con un Back-End Bound muy elevado y bajo Retiring, lo que indica que la CPU pasa la mayor parte del tiempo esperando cargas desde memoria.
 
 
 ## Eficiencia de caché y comparación con MKL
 
 El contraste con MKL es extremadamente revelador. La rutina dgesv reduce los accesos a memoria a cifras muy inferiores:
 
-* I refs: 6.4×10⁹ → 1.1×10⁹
+* I refs: 6.4×10⁹ -> 1.1×10⁹
 
-* D refs: 3.3×10⁹ → 0.39×10⁹
+* D refs: 3.3×10⁹ -> 0.39×10⁹
 
-* D1 misses: 270×10⁶ → 34×10⁶
+* D1 misses: 270×10⁶ -> 34×10⁶
 
 Es decir, MKL realiza:
 
@@ -188,7 +187,7 @@ Es decir, MKL realiza:
 
 Este resultado es completamente coherente con los hallazgos de VTune, en particular:
 
-* MKL reduce el Memory Bound del 45–60 % → 20 %
+* MKL reduce el Memory Bound del 45–60 % -> 20 %
 
 * Reduce drásticamente la presión sobre L3 y DRAM
 
@@ -215,7 +214,7 @@ La herramienta Valgrind Memcheck no pudo ejecutarse directamente en el entorno d
 
 # 6. Vectorización
 
-El análisis detallado con Intel Advisor confirma que los bucles principales de la rutina my_dgesv están completamente autovectorizados por el compilador ICC. El informe muestra que el bucle dominante en la eliminación de Gauss-Jordan (línea 53) aparece en sus versiones body, peeled y remainder, y que todas ellas han sido vectorizadas utilizando instrucciones AVX2 de 256 bits. Además, el compilador aplica transformaciones adicionales como loop unrolling, fusion y peeling para maximizar la alineación y aprovechamiento de las unidades SIMD. Advisor estima un speedup teórico inferior a 3.5× para este bucle, lo cual es coherente con las limitaciones algorítmicas del método.
+El análisis detallado con Intel Advisor confirma que los bucles principales de la rutina my_dgesv están completamente autovectorizados por el compilador ICC. El informe muestra que el bucle dominante en la eliminación de Gauss-Jordan (línea 53) aparece en sus versiones body, peeled y remainder, y que todas ellas han sido vectorizadas utilizando instrucciones AVX2 de 256 bits. Además, el compilador aplica transformaciones adicionales como loop unrolling, fusion y peeling para maximizar la alineación y aprovechamiento de las unidades SIMD. Advisor estima un speedup teórico inferior a 3.5x para este bucle, lo cual es coherente con las limitaciones algorítmicas del método.
 
 El informe también identifica bucles no vectorizables, como el de generación de la matriz mediante rand(), que aparece marcado como Scalar – function call cannot be vectorized, o bucles externos cuya vectorización no es necesaria porque el bucle interior ya está vectorizado. En conjunto, estos resultados confirman que el compilador no encuentra impedimentos técnicos relevantes para vectorizar las partes críticas del algoritmo. Sin embargo, el rendimiento global continúa estando limitado por el comportamiento de memoria: aunque las operaciones aritméticas se vectoricen eficientemente, el acceso repetido y poco reutilizable a la matriz provoca un carácter fuertemente Memory-Bound, de modo que la vectorización no se traduce en mejoras significativas de rendimiento.
 
@@ -223,9 +222,9 @@ El informe también identifica bucles no vectorizables, como el de generación d
 
 El estudio conjunto con VTune, Cachegrind e Intel Advisor demuestra que el principal cuello de botella de la implementación del método de Gauss-Jordan no se encuentra en la capacidad de cálculo ni en la ausencia de vectorización, sino en la estructura del propio algoritmo y su patrón de acceso a memoria. La rutina realiza barridos completos por filas sin ningún tipo de blocking, lo que provoca un volumen masivo de accesos a datos con muy poca reutilización en caché. Este comportamiento se traduce en valores extremadamente altos de Memory Bound y Back-End Bound en VTune, así como en miles de millones de referencias a memoria y centenares de millones de fallos en caché según Cachegrind.
 
-La vectorización tampoco supone un factor limitante. Intel Advisor confirma que los bucles principales del algoritmo se autovectorizan por completo empleando AVX2, con estimaciones de speedup teórico de hasta 3.5× en las secciones críticas. Sin embargo, este potencial no se manifiesta en el rendimiento real debido a que el código está dominado por los accesos a memoria: aunque las operaciones aritméticas sean vectorizadas, la tasa de transferencia de datos impide alimentar a las unidades SIMD con suficiente rapidez. Esto coincide con los resultados de VTune, donde se observa un IPC bajo, un porcentaje reducido de Retiring y un claro dominio de esperas asociadas a la jerarquía de memoria.
+La vectorización tampoco supone un factor limitante. Intel Advisor confirma que los bucles principales del algoritmo se autovectorizan por completo empleando AVX2, con estimaciones de speedup teórico de hasta 3.5x en las secciones críticas. Sin embargo, este potencial no se manifiesta en el rendimiento real debido a que el código está dominado por los accesos a memoria. Esto coincide con los resultados de VTune, donde se observa un IPC bajo, un porcentaje reducido de Retiring y un claro dominio de esperas asociadas a la jerarquía de memoria.
 
-En comparación, la rutina dgesv de Intel MKL ofrece un rendimiento entre 50 y 60 veces superior. Este comportamiento no se debe al compilador, sino al algoritmo: MKL utiliza una factorización LU bloqueada, diseñada específicamente para maximizar la localidad espacial y temporal, reducir el tráfico a memoria y explotar de manera óptima las cachés. El resultado es un volumen de referencias a memoria entre 6 y 8 veces menor, una reducción drástica de fallos en caché y un IPC cercano a 2, muy superior al obtenido con la implementación manual.
+En comparación, la rutina dgesv de Intel MKL ofrece un rendimiento entre 50 y 60 veces superior. Este comportamiento no se debe al compilador, sino al algoritmo: MKL utiliza un algoritmo diseñado específicamente para maximizar la localidad espacial y temporal, reducir el tráfico a memoria y explotar de manera óptima las cachés. El resultado es un volumen de accesos a memoria entre 6 y 8 veces menor, una reducción drástica de fallos en caché y un IPC cercano a 2, muy superior al obtenido con la implementación manual.
 
 Además, el análisis del uso del heap muestra que la versión desarrollada presenta fugas de memoria, ya que las matrices a, b, aref, bref y el vector ipiv se asignan dinámicamente pero no se liberan explícitamente. Aunque estas fugas no afectan al tiempo de ejecución del experimento, sí representan un problema de calidad del software y serían detectadas como definitely lost por Valgrind Memcheck en un entorno compatible.
 
@@ -235,10 +234,9 @@ En conjunto, los resultados indican que:
 
 * El compilador no es el factor decisivo: las diferencias entre -O2, -O3 y -fast son marginales frente al coste intrínseco del algoritmo.
 
-* El verdadero cuello de botella es el acceso no bloqueado a memoria, que limita el throughput de cálculo independientemente de la ISA vectorial.
+* El verdadero cuello de botella es el acceso a memoria, que limita el throughput de cálculo independientemente de la vectorización.
 
 * Las optimizaciones efectivas requieren cambiar la estructura algorítmica, no los flags del compilador.
 
 
 Por tanto, la mejora de rendimiento solo puede obtenerse adoptando algoritmos con mayor intensidad aritmética y mejor comportamiento en la jerarquía de memoria, como los empleados en bibliotecas optimizadas tipo BLAS/LAPACK.
-

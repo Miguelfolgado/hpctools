@@ -6,6 +6,10 @@ make clean && make CFLAGS="-Ofast-vec"
 
 Para la task 3:
 make clean && make CC=icx CFLAGS="-O2"
+make clean && make CC=icx CFLAGS="-O3"
+make clean && make CC=icx CFLAGS="-Ofast"
+make clean && make CC=icx CFLAGS="-Ofast+ipo"
+make clean && make CC=icx CFLAGS="-mkl"
 
 make clean && make CC=icc CFLAGS="-O2"
 make clean && make CC=icc CFLAGS="-O3"
